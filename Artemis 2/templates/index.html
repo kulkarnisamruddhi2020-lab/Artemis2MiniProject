@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artemis II - Mission Control Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">🚀 NASA - ARTEMIS II</div>
+        <div class="mission-clock">Mission Clock T+ <span id="clock">00:00:00</span></div>
+    </header>
+
+    <main class="dashboard">
+        <!-- Visual Trajectory Panel -->
+        <section class="panel trajectory-panel">
+            <h2>Orbital Trajectory Map</h2>
+            <div class="canvas-container">
+                <canvas id="trajectoryMap" width="850" height="500"></canvas>
+            </div>
+            <div class="controls">
+                <button id="btnStart" class="btn btn-primary">Initialize Mission</button>
+                <button id="btnStep" class="btn btn-secondary" disabled>Next Phase (Step)</button>
+                <button id="btnAbort" class="btn btn-danger" disabled>⚠️ ABORT MISSION</button>
+            </div>
+        </section>
+
+        <!-- Sidebar Panels -->
+        <aside class="sidebar">
+            <section class="panel telemetry-panel">
+                <h2>Real-Time Telemetry</h2>
+                <div class="telemetry-data">
+                    <div class="data-row">
+                        <span>Current Stage:</span>
+                        <strong id="t-stage" class="highlight">OFLINE</strong>
+                    </div>
+                    <div class="data-row">
+                        <span>Altitude:</span>
+                        <strong id="t-alt">0.00</strong> km
+                    </div>
+                    <div class="data-row">
+                        <span>Velocity:</span>
+                        <strong id="t-vel">0.00</strong> km/s
+                    </div>
+                    <div class="data-row">
+                        <span>Status:</span>
+                        <strong id="t-status">STANDBY</strong>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel db-panel" style="text-align: center;">
+                <h2>🛰️ Orbital Visualizer</h2>
+                <div class="mini-canvas-container" style="background-color: #030406; border: 1px solid #333; border-radius: 4px; padding: 1rem; margin-top: 1rem;">
+                    <canvas id="miniSimCanvas" width="300" height="160"></canvas>
+                </div>
+                <div style="margin-top: 10px; font-size: 0.9rem; color: #45a29e;" id="visualizerStatus">
+                    Ship Integrity: NOMINAL
+                </div>
+            </section>
+        </aside>
+    </main>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
